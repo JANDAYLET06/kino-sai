@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Киносайт</title>
+    <style>
+        /* 1. CSS3 Веб-шрифт */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        /* CSS Variables */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #ecf0f1;
+            --accent-color: #e74c3c;
+            --font-family: 'Roboto', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        /* 2. Жалпы стильдер */
+        body {
+            margin: 0;
+            font-family: var(--font-family);
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* 3. Мәтін бөлігі */
+        #text-container {
+            border: 2px solid var(--accent-color);
+            padding: 2cm 1cm 2cm 3cm;
+            background-color: #bdc3c7;
+            font-size: 14pt;
+            text-indent: 1.5cm;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        #text-container:hover {
+            transform: scale(1.02);
+        }
+
+        #text-container .drop-cap {
+            font-size: 24pt;
+            float: left;
+            line-height: 1;
+            margin-right: 10px;
+            color: var(--accent-color);
+            animation: floatUp 2s ease-out;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 4. Кесте */
+        #styled-table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #styled-table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        #styled-table th, #styled-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        #styled-table th {
+            text-align: center;
+        }
+
+        #styled-table td:first-child {
+            text-align: justify;
+        }
+
+        #styled-table td:nth-child(2) {
+            text-align: center;
+        }
+
+        #styled-table tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        #styled-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* 5. Обтекание сурет */
+        .image-container {
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .float-image {
+            float: left;
+            margin: 0 20px 20px 0;
+            max-width: 250px;
+            border-radius: 10px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .float-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* 6. Тізімдер мен сілтемелер */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex; 
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .styled-list li {
+            margin: 10px;
+        }
+
+        .styled-list a {
+            display: block;
+            padding: 15px 25px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .styled-list a:hover {
+            background-color: darken(var(--accent-color), 10%);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* 7. CSS Grid для орналасу */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform var(--transition-speed);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 8. Анимациялар */
+        .animated-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .animated-button:hover {
+            background-color: var(--accent-color);
+            transform: rotate(5deg);
+        }
+
+        /* 9. Медиасұраныстар - Responsive Design */
+        @media (max-width: 768px) {
+            #text-container {
+                padding: 1cm 0.5cm;
+                text-align: center;
+            }
+
+            .float-image {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            .styled-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .styled-list a {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Кино әлемі</h1>
+        <p>Соңғы жаңалықтар, рецензиялар және трейлерлер</p>
+    </header>
+
+    <!-- 1. Мәтін бөлігі -->
+    <div id="text-container">
+        <span class="drop-cap">К</span>инолар әлемі – бұл ерекше әлем. Біз сіздерге соңғы жаңалықтарды, кино рецензияларын және трейлерлерді ұсынамыз. Біздің сайттан сүйікті киноларыңыз туралы толық ақпарат таба аласыз.
+        <button class="animated-button">Қосымша оқыңыз</button>
+    </div>
+
+    <!-- 2. Кесте -->
+    <table id="styled-table">
+        <thead>
+            <tr>
+                <th>Фильм атауы</th>
+                <th>Жанры</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Қазақфильм</td>
+                <td>Драма</td>
+            </tr>
+            <tr>
+                <td>Батырлар жолы</td>
+                <td>Экшн</td>
+            </tr>
+            <tr>
+                <td>Аспан жауары</td>
+                <td>Фантастика</td>
+            </tr>
+            <tr>
+                <td>Туған жер</td>
+                <td>Тарихи</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 3. Сурет обтекауымен -->
+    <div class="image-container">
+        <img src="111.jpg" alt="Фильм постері" class="float-image">
+        <p>Бұл жаңа кинофильмнің постері. Суретпен қоса мәтін осы бөлімде обтекау әдісімен орналастырылған. Кинофильмдер туралы толық ақпаратты біздің сайттан таба аласыз.</p>
+    </div>
+
+    <!-- 4. Галерея (CSS Grid) -->
+    <div class="gallery">
+        <img src="111.jpg" alt="Фильм 1">
+        <img src="222.jpg" alt="Фильм 2">
+        <img src="333.jpg" alt="Фильм 3">
+        <img src="444.jpg" alt="Фильм 4">
+        <img src="555.jpg" alt="Фильм 5">
+        <img src="666.jpg" alt="Фильм 6">
+    </div>
+
+    <!-- 5. Тізімдер мен сілтемелер -->
+    <ul class="styled-list">
+        <li><a href="#">Жаңа фильмдер</a></li>
+        <li><a href="#">Танымал фильмдер</a></li>
+        <li><a href="#">Кино жаңалықтары</a></li>
+        <li><a href="#">Рецензиялар</a></li>
+    </ul>
+
+    <footer style="text-align: center; padding: 20px; background-color: var(--primary-color); color: white;">
+        &copy; 2024 Киносайт. Барлық құқықтар қорғалған.
+    </footer>
+
+</body>
+</html>
